@@ -20,7 +20,10 @@ public class Solution {
         }
 
         while(fast!=null && fast.next!=null){
-
+   /// pehele move krana hai tb tk move krao jb tk wo mil nhi jaate 
+   // ek baar cycle me milenge 
+   // fir hum slow = head pr krdenge reset 
+   // fir jb tk dubara nhi milte fir dono ko move kraynge and wahi pont hoga cycle ka
             
            slow = slow.next;
            fast = fast.next.next;
