@@ -40,10 +40,10 @@ class Solution {
            
            ListNode prev = null;
            ListNode curr = head;
-           ListNode next = curr;
+          
 
            while(curr!=null){
-            next = curr.next;
+           ListNode next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
