@@ -1,25 +1,37 @@
 class Solution {
     public int threeSumClosest(int[] nums, int target) {
-        int n = nums.length;
 
-        int ans = nums[0] + nums[1] + nums[2];
-        int res = Math.abs(ans - target);
+         Arrays.sort(nums);
+          int closest = nums[0]+nums[1]+nums[2];
+        
+           for(int i=0;i<nums.length-2;i++){
 
-        for (int i = 0; i < n - 2; i++) {
-            for (int j = i + 1; j < n - 1; j++) {
-                for (int k = j + 1; k < n; k++) {
+            int j = i+1;
+            int k = nums.length-1;
 
-                    int sum = nums[i] + nums[j] + nums[k];
-                    int diff = Math.abs(sum - target);
+            while(j<k){
 
-                    if (diff < res) {
-                        res = diff;
-                        ans = sum;
-                    }
+                int sum = nums[i]+nums[j]+nums[k];
+
+                if(Math.abs(closest-target)>Math.abs(sum-target)){
+                    closest = sum;
+                }
+
+                if(sum==target){
+                    return sum;
+                }else if(sum<target){
+                    j++;
+                }
+                else{
+                   k--;
                 }
             }
-        }
 
-        return ans;
+           }
+          
+          return closest;  
+
     }
 }
+
+//index nhi managa hai toh sort krlo and then apply two pointer
