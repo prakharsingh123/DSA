@@ -11,29 +11,44 @@
 class Solution {
     public boolean isPalindrome(ListNode head) {
 
-        Stack<Integer>stack = new Stack<>();
-
-         ListNode curr = head;
-         if(head==null){
+        if (head == null || head.next == null) {
             return true;
-         }
-         
-         while(curr!=null){
-            stack.add(curr.val);
-            curr = curr.next;
-         }
-
-         curr = head;
-
-         while(curr!=null && !stack.isEmpty()){
-            if(curr.val!=stack.pop()){
-                return false;
-            }
-            curr = curr.next;
-         }
-
-         return true;
-
-     
         }
+        ListNode fast = head;
+        ListNode slow = head;
+      
+       while(fast.next!=null && fast.next.next!=null){
+          slow = slow.next;
+          fast = fast.next.next;
+       }
+
+       ListNode newRev  = reverseList(slow.next);
+       ListNode first = head;
+       ListNode second = newRev;
+
+       while(second!=null){
+          if(first.val!=second.val){
+            return false;
+          }
+          first = first.next;
+          second  = second.next;
+       }
+         
+       reverseList(newRev);
+       return true;
+        }
+
+
+    public ListNode reverseList(ListNode head){
+           
+           if(head.next==null || head==null){
+            return head;
+           }
+         
+         ListNode newHead = reverseList(head.next);
+          head.next.next = head;
+          head.next = null;
+    
+        return newHead;
+    }
 }
