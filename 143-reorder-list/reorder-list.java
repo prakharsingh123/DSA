@@ -9,32 +9,39 @@
  * }
  */
 class Solution {
+    ListNode curr;
     public void reorderList(ListNode head) {
-   
-       ListNode curr = head;
-    Stack<ListNode> stack = new Stack<>();
-
-    while(curr!=null){
-        stack.push(curr);
-        curr= curr.next;
-    }
-
-    int k = stack.size()/2;
-
-     curr = head;
-         
-         while(k>0){
-               ListNode temp = curr.next;
-         ListNode topNode = stack.pop();
-         curr.next = topNode;
-           curr = temp;
-         topNode.next = temp;
-       
-         k--;
-         }
-        curr.next = null;
-
-   
-
+      curr = head;
+      solve(head);
 }
+
+ public void solve(ListNode head){
+     
+
+     if(head==null){
+        return;
+     }
+
+     solve(head.next);
+
+     ListNode temp = curr.next;
+
+     if(curr.next ==null){
+        return ;
+     }else if(curr==head){
+        head.next = null;
+        return;
+     }
+
+        curr.next = head;
+
+        if(head==temp){
+            head.next=null;
+        }else{
+            head.next = temp;
+        }
+        curr = temp;
+
+
+ }
 }
